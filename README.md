@@ -439,17 +439,33 @@ Property Viewing Calendar
 Appointment Workflows
         ↓
 Property Viewing → Negotiation
+```
 
-| Component                 | Responsibility                                                                                                |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **GoHighLevel**           | Contacts, Opportunities, Pipeline, Forms, Workflows, Follow-Up, Calendar and Appointments                     |
-| **n8n**                   | Integration orchestration, validation, deduplication logic, transformation, business logic and error handling |
-| **Google Gemini AI**      | Lead intent assessment from inquiry information                                                               |
-| **GHL REST API**          | Writing processed qualification results back to the CRM                                                       |
-| **Authenticated Webhook** | Secure event/data transfer from GHL to n8n                                                                    |
+### Platform Responsibilities
+
+| Component | Responsibility |
+|---|---|
+| **GoHighLevel** | Contacts, Opportunities, Pipeline, Forms, Workflows, Follow-Up, Calendar and Appointments |
+| **n8n** | Integration orchestration, validation, deduplication logic, transformation, business logic and error handling |
+| **Google Gemini AI** | Lead intent assessment from inquiry information |
+| **GHL REST API** | Writing processed qualification results back to the CRM |
+| **Authenticated Webhook** | Secure event/data transfer from GHL to n8n |
+
+## 🛠️ Technology Stack
+
+- **GoHighLevel** — CRM & business automation
+- **n8n** — Integration & workflow orchestration
+- **Google Gemini AI** — AI lead intent assessment
+- **REST API** — CRM integration
+- **Webhooks** — Event-driven data transfer
+- **JSON** — Integration payloads and data mapping
+
+### Design Principle
+
+> **GoHighLevel = CRM & Business Operations**  
+> **n8n = Integration, Advanced Logic & AI Orchestration**
 
 This separation keeps standard CRM operations inside GoHighLevel while using n8n only where more advanced processing or external integration is required.
-
 ## 📦 n8n Workflow Import & Configuration
 
 A sanitized version of the n8n workflow is included in this repository:
