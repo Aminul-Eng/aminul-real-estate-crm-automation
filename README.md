@@ -500,3 +500,36 @@ Configure permissions according to the operations used in your own environment a
 The exported workflow is provided as a sanitized implementation reference. Environment-specific credentials, IDs, and authentication values must be configured before the workflow can run successfully.
 
 After configuration, test the workflow with dummy data before connecting it to a production GHL account.
+
+## 📁 Project Structure
+
+```text
+aminul-real-estate-crm-automation/
+│
+├── README.md
+│
+├── docs/
+│   └── screenshots/
+│       ├── 01-aminul-real-estate-sales-pipeline.png
+│       ├── 02-aminul-real-estate-lead-capture-qualification-workflow.png
+│       ├── 03-aminul-real-estate-lead-capture-form.png
+│       ├── 04-aminul-real-estate-n8n-lead-processing-workflow.png
+│       ├── 05-aminul-real-estate-ai-qualification-crm-update.png
+│       ├── 06-aminul-real-estate-property-viewing-booking-calendar.png
+│       ├── 07-aminul-real-estate-property-viewing-automation.png
+│       ├── 08-aminul-real-estate-appointment-status-pipeline-update.png
+│       ├── 09-aminul-real-estate-no-show-follow-up-workflow.png
+│       ├── 10-aminul-real-estate-appointment-to-negotiation-result.png
+│       └── 11-aminul-real-estate-ai-failure-fallback.png
+│
+└── n8n/
+    └── aminul-real-estate-ghl-lead-processing-sanitized.json
+```
+
+### Repository Contents
+
+- **`README.md`** — Complete project architecture, implementation, testing, security, and setup documentation.
+- **`docs/screenshots/`** — Visual evidence of the GHL and n8n implementation and test results.
+- **`n8n/`** — Sanitized n8n workflow that can be imported and configured in another environment.
+
+> The repository intentionally excludes API tokens, webhook secrets, authentication credentials, and real customer confidential data.
