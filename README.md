@@ -157,3 +157,32 @@ The final qualification and AI assessment are written back to the corresponding 
 ### 📸 n8n Lead Processing Workflow
 
 ![n8n Lead Processing Workflow](docs/screenshots/04-aminul-real-estate-n8n-lead-processing-workflow.png)
+
+## 🤖 AI Qualification & CRM Write-Back
+
+After validation and rule-based qualification, the lead is analyzed for purchase intent using Google Gemini.
+
+The AI assessment is intentionally separated from deterministic business rules:
+
+- **Budget Qualification** → Rule-based logic
+- **Lead Intent Assessment** → AI analysis
+
+This keeps critical business decisions predictable while using AI where interpretation of unstructured lead messages is useful.
+
+### Example Processed Lead
+
+For a successfully processed test lead:
+
+- **Budget:** 6,500,000
+- **Lead Qualification:** High Budget
+- **AI Lead Assessment:** Strong Intent
+- **Pipeline Progression:** New Lead → Qualified
+
+The qualification and AI assessment are written back to custom fields on the GoHighLevel Contact record.
+
+This allows the sales team to see the processed lead intelligence directly inside the CRM without opening n8n.
+
+### 📸 AI Qualification Result in GoHighLevel
+
+![AI Qualification and CRM Update](docs/screenshots/05-aminul-real-estate-ai-qualification-crm-update.png)
+
