@@ -307,5 +307,34 @@ The following test intentionally triggered an AI failure. The AI step failed aft
 
 ![AI Failure Retry and Fallback](docs/screenshots/11-aminul-real-estate-ai-failure-fallback.png)
 
+## 🧪 Testing & Validation
+
+The system was tested across multiple lead-processing and appointment scenarios to verify both the normal business flow and selected failure paths.
+
+| Test Scenario | Expected Result | Status |
+|---|---|---|
+| Valid high-budget lead | Contact and Opportunity created, lead processed through n8n, qualification written back to GHL | ✅ Tested |
+| High-budget qualification | Lead classified as **High Budget** | ✅ Tested |
+| Low-budget lead | Lead follows the lower-budget workflow path | ✅ Tested |
+| Missing / invalid required data | n8n validation rejects the lead from the normal qualification path | ✅ Tested |
+| AI intent assessment | Gemini assessment written back to the GHL Contact | ✅ Tested |
+| Property-viewing booking | Appointment created and Opportunity moved to **Property Viewing** | ✅ Tested |
+| Appointment marked Showed | Opportunity moved from **Property Viewing → Negotiation** | ✅ Tested |
+| No-Show workflow | Follow-up workflow triggered for the configured No Show status | ✅ Tested |
+| AI service failure | Retry/fallback path continues processing and updates the CRM | ✅ Tested |
+| Re-submission of the same Contact | GHL workflow re-entry protection prevents repeated processing | ✅ Tested |
+| True duplicate-contact branch | Deduplication logic implemented | ⚠️ Implemented, not fully E2E verified |
+| Scheduled reminder delivery | Reminder action configured relative to appointment time | ⚠️ Configured, delivery not independently observed |
+
+### Final Smoke Test
+
+After the project branding and webhook-secret rotation were completed, a fresh dummy lead was submitted through the final system.
+
+The test successfully verified:
+
+**Form Submission → GHL Contact → Opportunity → Authenticated Webhook → n8n Processing → Validation → Qualification → AI Assessment → GHL CRM Update → Qualified Pipeline Stage**
+
+The final n8n execution completed successfully, confirming that the core integration remained functional after the final configuration changes.
+
 
 
