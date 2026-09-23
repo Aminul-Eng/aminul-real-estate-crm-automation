@@ -186,3 +186,43 @@ This allows the sales team to see the processed lead intelligence directly insid
 
 ![AI Qualification and CRM Update](docs/screenshots/05-aminul-real-estate-ai-qualification-crm-update.png)
 
+## 📅 Property Viewing Calendar & Appointment Automation
+
+Qualified leads can schedule a property viewing through a dedicated GoHighLevel booking calendar.
+
+### Calendar Configuration
+
+The **Aminul Real Estate - Property Viewing** calendar provides:
+
+- 30-minute property-viewing appointments
+- Available date and time-slot selection
+- Customer self-booking
+- Appointment data connected directly to the CRM
+
+This removes unnecessary back-and-forth communication when scheduling property viewings.
+
+### 📸 Property Viewing Booking Calendar
+
+![Property Viewing Booking Calendar](docs/screenshots/06-aminul-real-estate-property-viewing-booking-calendar.png)
+
+### Booking Automation
+
+When a customer books a property viewing, a dedicated GHL Workflow handles the appointment process:
+
+**Customer Booked Appointment → Confirmation Email → Find Opportunity → Update Opportunity → Wait → Reminder Email**
+
+The workflow searches for the lead's existing open Opportunity before updating the sales process.
+
+If the Opportunity is found:
+
+1. The Opportunity is moved to **Property Viewing**
+2. The customer receives booking confirmation
+3. The workflow waits until the configured reminder time
+4. A property-viewing reminder is sent before the appointment
+
+If no matching Opportunity is found, the workflow ends without creating an unintended duplicate Opportunity.
+
+### 📸 Property Viewing Automation
+
+![Property Viewing Appointment Automation](docs/screenshots/07-aminul-real-estate-property-viewing-automation.png)
+
