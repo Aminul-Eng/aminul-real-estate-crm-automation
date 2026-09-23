@@ -401,4 +401,50 @@ Before deploying a similar system for a real client:
 - Document dependencies before handover
 - Revoke or rotate credentials that are no longer required
 
-> **Security Note:** No authentication secrets, API tokens, or real customer credentials are intentionally included in this repository.
+**Security Note:** No authentication secrets, API tokens, or real customer credentials are intentionally included in this repository.
+
+## 🏗️ System Architecture
+
+The solution separates CRM operations from advanced integration and AI processing so that each platform handles the responsibilities it is best suited for.
+
+### Architecture Flow
+
+```text
+Lead Source / Website
+        ↓
+GoHighLevel Form
+        ↓
+Contact + Opportunity
+        ↓
+GHL Lead Workflow
+        ↓
+Authenticated Webhook
+        ↓
+n8n
+ ├── Data Normalization
+ ├── Contact Lookup
+ ├── Deduplication Logic
+ ├── Validation
+ ├── Budget Qualification
+ └── Gemini AI Intent Assessment
+        ↓
+GoHighLevel REST API
+        ↓
+Contact Qualification Update
+        ↓
+Qualified Opportunity
+        ↓
+Property Viewing Calendar
+        ↓
+Appointment Workflows
+        ↓
+Property Viewing → Negotiation
+
+| Component                 | Responsibility                                                                                                |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **GoHighLevel**           | Contacts, Opportunities, Pipeline, Forms, Workflows, Follow-Up, Calendar and Appointments                     |
+| **n8n**                   | Integration orchestration, validation, deduplication logic, transformation, business logic and error handling |
+| **Google Gemini AI**      | Lead intent assessment from inquiry information                                                               |
+| **GHL REST API**          | Writing processed qualification results back to the CRM                                                       |
+| **Authenticated Webhook** | Secure event/data transfer from GHL to n8n                                                                    |
+
