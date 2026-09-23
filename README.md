@@ -438,8 +438,8 @@ Property Viewing Calendar
         ↓
 Appointment Workflows
         ↓
-Property Viewing → Negotiation
-```
+Property Viewing → Negotiation```
+
 
 ### Platform Responsibilities
 
