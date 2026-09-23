@@ -42,3 +42,38 @@ Each stage represents a clear step in the sales process:
 ### 📸 Pipeline Overview
 
 ![Aminul Real Estate Sales Pipeline](docs/screenshots/01-aminul-real-estate-sales-pipeline.png)
+
+## 📝 Lead Capture & CRM Data
+
+A dedicated GoHighLevel form captures the information required to process and qualify a real estate lead.
+
+### Lead Information Collected
+
+- First Name
+- Last Name
+- Phone
+- Email
+- Property Interest
+- Budget
+- Preferred Location
+- Message
+
+The real-estate-specific information is stored in custom CRM fields so it can be used later by GHL Workflows, n8n business logic, and AI qualification.
+
+### Lead Capture Process
+
+**Website / Campaign → GHL Form → Contact Record → Opportunity → Sales Pipeline**
+
+After a successful form submission, the system can:
+
+- Create or update the Contact
+- Store property requirements in CRM fields
+- Add the lead tag
+- Create an Opportunity
+- Place the Opportunity in the **New Lead** stage
+- Start the lead-processing Workflow
+
+### 📸 Lead Capture Form
+
+![Aminul Real Estate Lead Capture Form](docs/screenshots/03-aminul-real-estate-lead-capture-form.png)
+
