@@ -337,4 +337,68 @@ The test successfully verified:
 The final n8n execution completed successfully, confirming that the core integration remained functional after the final configuration changes.
 
 
+## 🔐 Security & Production Considerations
 
+The integration was designed with basic production security practices in mind.
+
+### Webhook Security
+
+Communication from GoHighLevel to n8n uses an **authenticated webhook** rather than an unrestricted public webhook.
+
+Authentication credentials and secret values are never included in this repository.
+
+### API Authentication
+
+n8n communicates with GoHighLevel through authenticated API access.
+
+The integration uses only the permissions required for the implemented workflow, including access to:
+
+- Contact lookup
+- Contact updates
+- Custom field information
+
+API credentials are stored in the automation platform's credential management system rather than hard-coded into public documentation.
+
+### Secret Management
+
+The following values must never be committed to a public repository:
+
+- Private Integration Tokens
+- API keys
+- OAuth client secrets
+- Access or refresh tokens
+- Webhook authentication secrets
+- Authorization headers
+- Passwords or OTPs
+- Real customer confidential data
+
+During development, the webhook authentication secret was rotated and the integration was retested successfully afterward.
+
+### n8n Workflow Export Safety
+
+Before publishing an n8n workflow export, the JSON should be reviewed for sensitive or environment-specific information.
+
+Important strings and fields to inspect include:
+
+`Authorization`, `Bearer`, `token`, `secret`, `apiKey`, `x-ghl-webhook-secret`, static headers, webhook URLs, credential references, and environment-specific identifiers.
+
+A workflow export should only be published after this security review.
+
+### Production Deployment Checklist
+
+Before deploying a similar system for a real client:
+
+- Audit existing GHL Pipelines, Workflows, Forms, Calendars, and integrations
+- Use proper Sub-account/User permissions instead of shared passwords
+- Store credentials in secure credential managers
+- Apply least-privilege API permissions
+- Use authenticated Webhooks
+- Test with dummy or sandbox data before production
+- Verify duplicate and idempotency behavior
+- Review retry and failure-handling paths
+- Add appropriate logging and monitoring
+- Validate consent and communication-compliance configuration
+- Document dependencies before handover
+- Revoke or rotate credentials that are no longer required
+
+> **Security Note:** No authentication secrets, API tokens, or real customer credentials are intentionally included in this repository.
