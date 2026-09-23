@@ -448,3 +448,5 @@ Property Viewing → Negotiation
 | **GHL REST API**          | Writing processed qualification results back to the CRM                                                       |
 | **Authenticated Webhook** | Secure event/data transfer from GHL to n8n                                                                    |
 
+This separation keeps standard CRM operations inside GoHighLevel while using n8n only where more advanced processing or external integration is required.
+
