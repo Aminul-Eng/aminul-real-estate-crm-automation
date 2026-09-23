@@ -226,3 +226,86 @@ If no matching Opportunity is found, the workflow ends without creating an unint
 
 ![Property Viewing Appointment Automation](docs/screenshots/07-aminul-real-estate-property-viewing-automation.png)
 
+## 🔄 Appointment Status & Pipeline Progression
+
+The automation continues after a property-viewing appointment is booked.
+
+Instead of requiring the sales team to manually update the CRM after every appointment, GoHighLevel uses appointment status changes to control the next stage of the Opportunity.
+
+### Customer Attended the Viewing
+
+When the appointment status is updated to **Showed**, the workflow:
+
+**Appointment Status: Showed → Find Opportunity → Update Opportunity → Negotiation**
+
+The workflow first searches for the corresponding open Opportunity. If found, the Opportunity is automatically moved to the **Negotiation** stage.
+
+### 📸 Appointment Status Automation
+
+![Appointment Status Pipeline Update](docs/screenshots/08-aminul-real-estate-appointment-status-pipeline-update.png)
+
+### 📸 Result in the Sales Pipeline
+
+The following test demonstrates the Opportunity progressing to the **Negotiation** stage after the property-viewing lifecycle.
+
+![Appointment to Negotiation Result](docs/screenshots/10-aminul-real-estate-appointment-to-negotiation-result.png)
+
+## 🚫 No-Show Follow-Up
+
+A separate workflow handles leads who do not attend their scheduled property viewing.
+
+When an appointment receives the configured **No Show** status, the workflow can:
+
+- Send a follow-up email to the lead
+- Notify the internal team
+- Keep the missed appointment visible for human follow-up
+
+This separates the normal attended-appointment path from the exception-handling path.
+
+### 📸 No-Show Automation
+
+![Property Viewing No-Show Follow-Up](docs/screenshots/09-aminul-real-estate-no-show-follow-up-workflow.png)
+
+## 🛡️ Error Handling & AI Failure Fallback
+
+External AI services can temporarily fail, time out, or become unavailable. The automation is designed so that an AI failure does not unnecessarily break the entire lead-processing workflow.
+
+### AI Reliability Strategy
+
+The AI processing step includes:
+
+- **Retry on Fail:** Enabled
+- **Maximum Attempts:** 3
+- **Wait Between Attempts:** 3 seconds
+- **Fallback Path:** Enabled
+
+If the AI assessment still fails after the retry attempts, the workflow continues through a fallback path instead of stopping the complete CRM process.
+
+### Fallback Result
+
+The Contact can be updated with:
+
+**AI assessment unavailable - manual review recommended**
+
+This preserves the deterministic lead qualification while clearly indicating that the AI assessment requires human review.
+
+### Why This Matters
+
+The architecture separates:
+
+**Business-Critical Logic → Deterministic Rules**
+
+from:
+
+**AI Interpretation → Failure-Tolerant Enhancement**
+
+Therefore, temporary AI availability issues do not have to prevent the lead from continuing through the CRM process.
+
+### 📸 Tested AI Failure & Fallback Path
+
+The following test intentionally triggered an AI failure. The AI step failed after retry attempts, while the fallback path and CRM update completed successfully.
+
+![AI Failure Retry and Fallback](docs/screenshots/11-aminul-real-estate-ai-failure-fallback.png)
+
+
+
