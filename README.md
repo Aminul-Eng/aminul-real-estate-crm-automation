@@ -450,3 +450,53 @@ Property Viewing → Negotiation
 
 This separation keeps standard CRM operations inside GoHighLevel while using n8n only where more advanced processing or external integration is required.
 
+## 📦 n8n Workflow Import & Configuration
+
+A sanitized version of the n8n workflow is included in this repository:
+
+`n8n/aminul-real-estate-ghl-lead-processing-sanitized.json`
+
+The public workflow preserves the automation logic while removing environment-specific credentials and identifiers.
+
+### Import
+
+1. Open n8n.
+2. Create a new workflow or use the workflow import option.
+3. Import:
+
+   `aminul-real-estate-ghl-lead-processing-sanitized.json`
+
+4. Configure the required credentials and environment-specific values before activating the workflow.
+
+### Required Configuration
+
+Replace the following placeholders with values from your own environment:
+
+| Placeholder | Configuration |
+|---|---|
+| `YOUR_GHL_LEAD_WEBHOOK_PATH` | Webhook path used for receiving lead data from GoHighLevel |
+| `YOUR_GHL_LOCATION_ID` | GoHighLevel Sub-account / Location ID |
+| `YOUR_LEAD_QUALIFICATION_CUSTOM_FIELD_ID` | GHL Custom Field ID for deterministic lead qualification |
+| `YOUR_AI_ASSESSMENT_CUSTOM_FIELD_ID` | GHL Custom Field ID for the AI assessment |
+
+### Credentials
+
+After importing, configure credentials inside n8n for:
+
+- Webhook Header Authentication
+- GoHighLevel API / Private Integration authentication
+- Google Gemini API authentication
+
+Do not hard-code secrets directly into the workflow.
+
+### GoHighLevel API Permissions
+
+The GHL integration used by this project requires the permissions necessary for the implemented Contact operations and Custom Field access.
+
+Configure permissions according to the operations used in your own environment and follow the principle of least privilege.
+
+### Important
+
+The exported workflow is provided as a sanitized implementation reference. Environment-specific credentials, IDs, and authentication values must be configured before the workflow can run successfully.
+
+After configuration, test the workflow with dummy data before connecting it to a production GHL account.
