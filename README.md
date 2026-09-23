@@ -532,4 +532,42 @@ aminul-real-estate-crm-automation/
 - **`docs/screenshots/`** — Visual evidence of the GHL and n8n implementation and test results.
 - **`n8n/`** — Sanitized n8n workflow that can be imported and configured in another environment.
 
-> The repository intentionally excludes API tokens, webhook secrets, authentication credentials, and real customer confidential data.
+The repository intentionally excludes API tokens, webhook secrets, authentication credentials, and real customer confidential data.
+
+## ⚠️ Known Limitations & Production Notes
+
+This project was built and tested as a portfolio implementation using controlled dummy data. The core CRM, integration, AI qualification, and appointment flows were tested, while several production considerations would require additional validation before deployment for a real business.
+
+### Known Limitations
+
+- **True Duplicate Contact Scenario**  
+  Deduplication logic is implemented by comparing the incoming Contact ID with the Contact returned by the GHL duplicate-contact lookup. The normal non-duplicate path was verified, but a true duplicate-contact scenario was not fully tested end-to-end.
+
+- **Scheduled Reminder Delivery**  
+  The property-viewing workflow includes a reminder action scheduled relative to the appointment time. The configuration was verified, but the actual scheduled reminder delivery was not independently observed during the lab testing window.
+
+- **Consent & Communication Compliance**  
+  The demo form contained GHL-generated consent placeholders that require business-specific compliance configuration before production use. Consent wording, messaging permissions, and applicable communication requirements should be reviewed for the client's actual business and jurisdiction.
+
+- **Email Deliverability**  
+  Dummy/example contact data was used during testing. Workflow execution should not be interpreted as verification of production email deliverability. A real deployment should configure and verify the appropriate sending domain/provider and email deliverability setup.
+
+- **Environment-Specific Configuration**  
+  The public n8n workflow is sanitized. GHL Location IDs, Custom Field IDs, authentication credentials, webhook configuration, and API credentials must be configured for the target environment.
+
+### Before Production Deployment
+
+A real client deployment should include:
+
+1. Existing GHL account and automation audit
+2. Requirement and process validation
+3. Production-specific field and pipeline mapping
+4. Duplicate and idempotency testing
+5. Email and communication-channel testing
+6. Consent and compliance review
+7. Credential and permission review
+8. Failure-path and retry testing
+9. Logging and monitoring strategy
+10. User acceptance testing before production release
+
+
