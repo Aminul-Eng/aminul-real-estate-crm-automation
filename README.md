@@ -631,3 +631,40 @@ Depending on project scope, a similar implementation can include:
 - Error and fallback handling
 - End-to-end testing
 - Implementation documentation and handover notes
+
+## 📋 Project Note & Handover
+
+This repository is a portfolio project demonstrating an end-to-end real estate CRM automation architecture using GoHighLevel, n8n, Webhooks, REST API, and AI-assisted lead qualification.
+
+The implementation focuses on practical business automation:
+
+**Lead Capture → CRM → Qualification → Pipeline → Follow-Up → Property Viewing → Appointment Status → Sales Progression**
+
+The architecture is designed so that standard CRM and customer-facing operations remain inside GoHighLevel, while n8n is used for advanced integration, validation, business logic, API operations, and AI processing.
+
+### Handover Considerations
+
+For a real client deployment, handover should include:
+
+- Business process and automation overview
+- GHL Pipeline and Workflow documentation
+- Custom Field mapping
+- Calendar and appointment configuration
+- n8n workflow documentation
+- API and Webhook dependency documentation
+- Credential ownership and access review
+- Testing results and known limitations
+- Error-handling and manual-review procedures
+- Production monitoring responsibilities
+
+Credentials and authentication secrets should remain under the client's ownership and should never be included in public documentation or source-control repositories.
+
+---
+
+### Project
+
+**Aminul Real Estate — Automated Lead Management & Property Viewing System**
+
+**Core Technologies:** GoHighLevel · n8n · Google Gemini AI · REST API · Webhooks
+
+**Focus:** CRM Automation · Lead Management · AI Qualification · Appointment Automation · Integration Engineering
