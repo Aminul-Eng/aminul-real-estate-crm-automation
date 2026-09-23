@@ -109,3 +109,51 @@ This helps prevent repeated messages and unnecessary duplicate Opportunities whe
 ### 📸 Main GHL Workflow
 
 ![GoHighLevel Lead Capture and Qualification Workflow](docs/screenshots/02-aminul-real-estate-lead-capture-qualification-workflow.png)
+
+## 🔗 n8n Integration & Lead Processing
+
+GoHighLevel handles the CRM and customer-facing business process, while n8n handles the more advanced integration and processing logic.
+
+The GHL Workflow sends lead data to an authenticated n8n Webhook. n8n then processes the lead before writing qualification results back to GoHighLevel through the REST API.
+
+### Processing Flow
+
+**GHL Workflow → Authenticated Webhook → Normalize Data → Search Existing Contact → Deduplication Check → Validation → Budget Qualification → AI Intent Assessment → GHL API Update**
+
+### n8n Responsibilities
+
+✅ **Data Normalization**  
+Incoming GHL data is mapped into a consistent structure for downstream processing.
+
+✅ **Existing Contact Lookup**  
+The workflow searches GoHighLevel for the corresponding Contact before continuing.
+
+✅ **Deduplication Logic**  
+Incoming and existing Contact information is compared to reduce unintended duplicate processing.
+
+✅ **Validation**  
+Required values such as Contact ID, email, and valid budget data are checked before qualification.
+
+✅ **Deterministic Qualification**  
+Budget qualification is handled with explicit business rules rather than relying on AI.
+
+Example classification:
+
+- Budget ≥ 5,000,000 → **High Budget**
+- Budget below threshold → **Standard Budget**
+
+✅ **AI Intent Assessment**  
+Google Gemini analyzes the lead's inquiry and classifies intent as:
+
+- Strong Intent
+- Moderate Intent
+- Weak Intent
+
+AI is used for interpreting lead intent, while deterministic business rules remain responsible for budget qualification.
+
+✅ **CRM Write-Back**  
+The final qualification and AI assessment are written back to the corresponding GoHighLevel Contact through the REST API.
+
+### 📸 n8n Lead Processing Workflow
+
+![n8n Lead Processing Workflow](docs/screenshots/04-aminul-real-estate-n8n-lead-processing-workflow.png)
